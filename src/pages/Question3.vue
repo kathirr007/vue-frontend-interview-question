@@ -4,7 +4,7 @@
       Create a reusable input component
     </p>
 
-    <InputBox />
+    <InputBox v-model="inputValue" />
 
     <p class="q-mt-md">
       Parent Component Value >> {{ inputValue }}
