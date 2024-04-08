@@ -17,6 +17,10 @@
       <br />
       Second Image: https://via.placeholder.com/40x40
     </p>
+    <div class="relative">
+      <img class="first-image" src="https://via.placeholder.com/300x200" alt="first-image">
+      <img class="second-image" src="https://via.placeholder.com/40x40" alt="second-image">
+    </div>
   </q-page>
 </template>
 
@@ -38,6 +42,26 @@ export default defineComponent({
     font-weight: 500;
 
     font-size: 16px;
+  }
+
+  .relative {
+    position: relative;
+
+    img {
+      display: block;
+    }
+
+    .first-image {
+      width: 100%;
+    }
+
+    .second-image {
+      position: absolute;
+      display: inline-block;
+      bottom: 0;
+      right: 0;
+      border: 2px solid orange;
+    }
   }
 }
 </style>
