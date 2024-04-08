@@ -4,6 +4,10 @@
       Find the smallest number from the given input
     </p>
 
+    <p>
+      Enters the numbers with comma separated.
+    </p>
+
     <input v-model="inputValue" />
 
     <q-btn
@@ -11,13 +15,19 @@
       unelevated
       label="Run"
       color="primary"
-    />
+      :disabled="!inputValue || !isValidInput"
+      @click="findSmallestNumber"
+      @keyup.enter="findSmallestNumber" />
+
+    <p class="input-error" v-if="!isValidInput">
+      Please input only numbers with comma seperated.
+    </p>
   </q-page>
 </template>
 
 <script>
 // vue
-import { defineComponent, reactive, toRefs } from "vue";
+import { defineComponent, reactive, toRefs, computed } from "vue";
 
 export default defineComponent({
   name: 'QuestionNumberFour',
@@ -28,14 +38,28 @@ export default defineComponent({
       inputValue: ''
     });
 
+    const findSmallestNumber = () => {
+      console.log(...(state.inputValue.split(',').map(number => +number)))
+      const smallestNumber = Math.min(...(state.inputValue.split(',').map(number => +number)))
+      console.log(smallestNumber)
+      return smallestNumber
+    }
+
+    const isValidInput = computed(() => {
+      return state.inputValue ? !/[a-zA-Z~!@#$%^&*()-[]{}\/?.<>|_+=]/.test(state.inputValue) && (/\d+,?/.test(state.inputValue)) : true
+      if (state.inputValue) {
+      }
+      return false;
+    })
+
     return {
       // state
       ...toRefs(state),
+      findSmallestNumber,
+      isValidInput
     }
   }
 })
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
