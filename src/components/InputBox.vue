@@ -1,16 +1,18 @@
 <template>
-  <input />
+  <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" />
 </template>
 
 <script>
-// vue
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'InputBox'
+  name: 'InputBox',
+  props: {
+    modelValue: {
+      type: String,
+    }
+  },
 })
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
